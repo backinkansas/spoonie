@@ -12,6 +12,7 @@ body {
 
 body {
     margin: 0;
+    background-color: #D2D5D7;
 }
 
 nav {
@@ -35,6 +36,7 @@ h1 {
     font-size: 48px;
     color: #F8F2F2;
     margin: 0;
+
 }
 
 main {
@@ -46,7 +48,7 @@ main {
 #initial_main {
     width: 80vh;
     height: 80vh;
-    background-color: #D2D5D7;
+    background-color: #2e9fb1;
     border-radius: 100%;
     margin-top: 15px;
     display: flex;
@@ -75,15 +77,15 @@ main {
 
 .my_button {
     padding: 5px;
-    border: 2px #2E9FB1 solid;
+    border: 2px #D2D5D7 solid;
     text-decoration: none;
-    color: #2E9FB1;
+    color: #D2D5D7;
 }
 
 #game {
     background-color: #D2D5D7;
     width: 100vw;
-    height: calc(100vh - 79px);
+    height: calc(100% - 79px);
 }
 @media (max-width: 768px) {
     #game {
@@ -103,7 +105,7 @@ h4 {
     justify-content: left;
     flex-wrap: wrap;
 }
-@media(max-width: 768px) {
+@media(max-width: 988px) {
     #all_badges {
         justify-content: center;
     }
@@ -146,10 +148,22 @@ h4 {
     width: 90px;
 }
 
-#score {
+#sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     position: absolute;
-    right: 60px;
+    right: 40px;
     top: 260px;
+}
+@media (max-width: 988px) {
+    #sidebar {
+        position: initial;
+        margin: 25px auto;
+    }
+}
+
+#score {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -158,17 +172,7 @@ h4 {
     border-radius: 50%;
     width: 160px;
     height: 160px;
-}
-@media (max-width: 1024px) {
-    #score {
-        right: 20px;
-    }
-}
-@media (max-width: 768px) {
-    #score {
-        position: initial;
-        margin: 25px auto;
-    }
+    margin-bottom: 15px;
 }
 
 .score_subtitle {
@@ -183,6 +187,33 @@ h4 {
     color: #cf4123;
 }
 
+#try_win {
+    padding: 5px;
+    border: 2px #cf4123 solid;
+    text-decoration: none;
+    color: rgb(210, 213, 215);
+    background-color: #cf4123;
+}
+#try_win:focus,
+#try_win:hover {
+    cursor: pointer;
+}
+@media (max-width: 1024px) {
+    #try_win {
+        right: 20px;
+    }
+}
+@media (max-width: 768px) {
+    #try_win {
+        position: initial;
+        margin: 10px auto;
+    }
+}
+
+#div_button {
+    display: flex;
+}
+
 .modal {
     display: none;
     position: fixed;
@@ -195,7 +226,7 @@ h4 {
     background-color: rgba(0,0,0,0.4);
 }
 
-.modal-content {
+.modal_content {
     position: relative;
     margin: auto;
     padding: 0;
@@ -218,26 +249,26 @@ h4 {
 
 h2 {
     text-align: center;
-    margin: 0;
+    margin: 0 0 10px 0;
 }
 
-.modal-header {
+.modal_header {
     padding: 40px 10px;
     background-color: #2E9FB1;
     color: white;
 }
 @media (max-width: 488px) {
-    .modal-header {
+    .modal_header {
         padding: 25px 15px;
     }
 }
 
-#buttons {
+.buttons {
     display: flex;
     justify-content: space-around;
 }
 @media (max-width: 488px) {
-    #buttons {
+    .buttons {
         flex-direction: column;
     }
 }
