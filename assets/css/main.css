@@ -86,11 +86,6 @@ main {
     background-color: #D2D5D7;
     height: calc(100% - 79px);
 }
-@media (max-width: 768px) {
-    #game {
-        height: 100%;
-    }
-}
 
 h4 {
     text-align: center;
@@ -142,9 +137,14 @@ h4 {
     justify-content: center;
     height: 93px;
 }
+@media(max-width: 988px){
+    #all_spoons {
+        height: auto;
+    }
+}
 
 .spoon {
-    width: 90px;
+    height: 90px;
 }
 
 #sidebar {
