@@ -291,7 +291,7 @@ h2 {
 }
 
 #end_main {
-    /* width: 100vw; */
+    margin-top: 20px;
     background-color: #D2D5D7;
     display: flex;
     flex-direction: column;
@@ -307,12 +307,30 @@ h2 {
     align-items: center;
 }
 
+#end_main p {
+    margin: 10px 0;
+}
+
+#end_numbers {
+    margin: 0 40px;
+    text-align: center;
+}
+
+#end_numbers span {
+    color: #2E9FB1;
+    font-weight: bold;
+    font-size: 45px;
+}
+@media(max-width: 768px) {
+    #end_numbers span {
+        font-size: 25px;
+    }
+}
+
 footer {
     background: #2e9fb1;
     padding: 2px 0;
     text-align: center;
-
-
     width: 100%;
 }
 
@@ -320,4 +338,10 @@ footer p {
     font-size: 13px;
     font-family: sans-serif;
     color: #151515;
+}
+
+@media(max-width: 768px) {
+    footer p {
+        margin: 13px 10px;
+    }
 }

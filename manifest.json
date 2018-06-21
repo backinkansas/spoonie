@@ -1,0 +1,23 @@
+{
+  "short_name": "Spoonie",
+  "name": "Spoonie Challenge",
+  "lang": "br",
+  "icons": [
+    {
+      "src": "./assets/img/sm_icon.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "./assets/img/icon.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "spoonie/index.html",
+  "background_color": "#2E9FB1",
+  "description": "Um jogo sobre empatia",
+  "display": "fullscreen",
+  "scope": "/spoonie/",
+  "theme_color": "#2E9FB1"
+}
