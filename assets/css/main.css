@@ -84,7 +84,6 @@ main {
 
 #game {
     background-color: #D2D5D7;
-    width: 100vw;
     height: calc(100% - 79px);
 }
 @media (max-width: 768px) {
@@ -141,7 +140,7 @@ h4 {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    /* width: 90vw; */
+    height: 93px;
 }
 
 .spoon {

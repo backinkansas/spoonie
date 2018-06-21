@@ -77,7 +77,8 @@ buttonContinue.onclick = function() {
 for (const img of badges) {
     img.addEventListener('click', function setGame() {
         let spoonCondition = document.querySelectorAll('.spoon')
-        if (img.src === "file:///D:/Asus/Documents/Reprograma/projeto_spoonie/assets/img/greymedal.svg") {
+        let imagePath = img.src
+        if (imagePath.includes('greymedal.svg')) {
             spoonCondition.length > 0 ? addPointChangeBadge(img) : alertMissingCurrency()
             console.log(selected)
         } else {
@@ -101,7 +102,7 @@ tryWin.addEventListener('click', function checkOptions() {
     } else {
         switch (false) {
             case verify("levantou"):
-                notVerified('Você não levantou da cama hoje');
+                notVerified('Você não levantou da cama hoje. Tem dias mais difíceis que outros.');
                 break;
             case verify("saiu"):
                 notVerified('Não deu pra sair de casa hoje, mas tudo bem! Você pode tentar novamente amanhã!');
