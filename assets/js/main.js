@@ -1,24 +1,24 @@
 const badges = document.querySelectorAll('.badge')
 let points = document.getElementById('score_p')
-let modal = document.getElementById('my_modal')
-let modalAlert = document.getElementById('modal_alert')
-const buttonOut = document.querySelector('#button_out')
-const buttonEnd = document.querySelector('#button_end')
-let interactionText = document.querySelector('#interactionText')
+const modal = document.getElementById('my_modal')
+const modalAlert = document.getElementById('modal_alert')
+const buttonOut = document.getElementById('button_out')
+const buttonEnd = document.getElementById('button_end')
+let interactionText = document.getElementById('interactionText')
 let selected = []
 const tryWin = document.getElementById('try_win')
 const buttonGiveUp = document.getElementById('button_giveup')
 const buttonContinue = document.getElementById('button_continue')
 
 function removeSpoon() {
-    let spoonContainer = document.querySelector('#all_spoons')
+    let spoonContainer = document.getElementById('all_spoons')
     let spoonSingle = document.querySelector('.spoon')
     let spoonCondition = document.querySelectorAll('.spoon')
     spoonCondition.length > 0 ? spoonContainer.removeChild(spoonSingle) : console.log('Não há colheres para remover')
 }
 
 function addSpoon() {
-    let spoonContainer = document.querySelector('#all_spoons')
+    let spoonContainer = document.getElementById('all_spoons')
     let spoonSingle = document.createElement('img')
     spoonSingle.classList.add('spoon')
     spoonSingle.setAttribute('src', './assets/img/teaspoon.svg')
@@ -39,7 +39,8 @@ function removePointChangeBadge(img) {
 }
 
 function alertMissingCurrency() {
-    modal.style.display = "block"
+    modal.classList.add('is-shownModal');
+    modal.classList.remove('is-hiddenModal');
 }
 
 function verify(action) {
@@ -48,16 +49,18 @@ function verify(action) {
 
 function notVerified(text) {
     interactionText.textContent = text
-    modalAlert.style.display = "block"
+    modalAlert.classList.add('is-shownModal');
+    modalAlert.classList.remove('is-hiddenModal');
 }
 
 buttonOut.onclick = function() {
-    modal.style.display = 'none';
+    modal.classList.add('is-hiddenModal');
+    modal.classList.remove('is-shownModal');
     for (const badge of badges) {
         badge.setAttribute('src', './assets/img/greymedal.svg')
     }
     points.textContent = 0
-    for (let i =0; i < 6; i++) {
+    for (let i = 0; i < 6; i++) {
         addSpoon()
     }
 }
@@ -71,7 +74,8 @@ buttonGiveUp.onclick = function() {
 }
 
 buttonContinue.onclick = function() {
-    modalAlert.style.display = 'none';
+    modalAlert.classList.add('is-hiddenModal');
+    modalAlert.classList.remove('is-shownModal');
 }
 
 for (const img of badges) {

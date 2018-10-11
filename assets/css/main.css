@@ -67,7 +67,6 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* width: 90%; */
     margin: 0 auto;
 }
 
@@ -214,7 +213,6 @@ h4 {
 }
 
 .modal {
-    display: none;
     position: fixed;
     z-index: 1;
     padding-top: 100px;
@@ -355,4 +353,12 @@ footer p {
     footer p {
         margin: 13px 10px;
     }
+}
+
+.is-hiddenModal {
+    display: none;
+}
+
+.is-shownModal {
+    display: block;
 }
