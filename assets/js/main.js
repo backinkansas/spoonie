@@ -1,130 +1,20 @@
-const badges = document.querySelectorAll('.badge')
-let points = document.getElementById('score_p')
-const modal = document.getElementById('my_modal')
-const modalAlert = document.getElementById('modal_alert')
-const buttonOut = document.getElementById('button_out')
-const buttonEnd = document.getElementById('button_end')
-let interactionText = document.getElementById('interactionText')
-let selected = []
-const tryWin = document.getElementById('try_win')
-const buttonGiveUp = document.getElementById('button_giveup')
-const buttonContinue = document.getElementById('button_continue')
+import badges from './badges.js'
+import Badge from './Badge.js'
+import BadgesList from './BadgesList.js'
+import SpoonList from './SpoonList.js';
 
-function removeSpoon() {
-    let spoonContainer = document.getElementById('all_spoons')
-    let spoonSingle = document.querySelector('.spoon')
-    let spoonCondition = document.querySelectorAll('.spoon')
-    spoonCondition.length > 0 ? spoonContainer.removeChild(spoonSingle) : console.log('Não há colheres para remover')
-}
+const app = {
+    init() {
+        const badgesList = badges.map(badge => {
+            return new Badge(badge)
+        })
 
-function addSpoon() {
-    let spoonContainer = document.getElementById('all_spoons')
-    let spoonSingle = document.createElement('img')
-    spoonSingle.classList.add('spoon')
-    spoonSingle.setAttribute('src', './assets/img/teaspoon.svg')
-    spoonSingle.setAttribute('alt','ícone de colher. Você só pode pegar medalhas se tiver colheres.')
-    spoonContainer.appendChild(spoonSingle)
-}
+        const badgesContainer = new BadgesList(badgesList)
+        badgesContainer.append()
 
-function addPointChangeBadge(img) {
-    img.setAttribute('src', './assets/img/medal.svg')
-    points.textContent = parseInt(points.textContent) + 1
-    removeSpoon()
-    selected.push(img.getAttribute('value'))
-}
-
-function removePointChangeBadge(img) {
-    img.setAttribute('src', './assets/img/greymedal.svg')
-    points.textContent = parseInt(points.textContent) - 1
-}
-
-function alertMissingCurrency() {
-    modal.classList.add('is-shownModal');
-    modal.classList.remove('is-hiddenModal');
-}
-
-function verify(action) {
-    return selected.includes(action)
-}
-
-function notVerified(text) {
-    interactionText.textContent = text
-    modalAlert.classList.add('is-shownModal');
-    modalAlert.classList.remove('is-hiddenModal');
-}
-
-buttonOut.onclick = function() {
-    modal.classList.add('is-hiddenModal');
-    modal.classList.remove('is-shownModal');
-    for (const badge of badges) {
-        badge.setAttribute('src', './assets/img/greymedal.svg')
-    }
-    points.textContent = 0
-    for (let i = 0; i < 6; i++) {
-        addSpoon()
+        const spoonList = new SpoonList()
+        spoonList.buildSpoonEntities()
     }
 }
 
-buttonEnd.onclick = function() {
-    window.location = 'results.html'
-}
-
-buttonGiveUp.onclick = function() {
-    window.location = 'results.html'
-}
-
-buttonContinue.onclick = function() {
-    modalAlert.classList.add('is-hiddenModal');
-    modalAlert.classList.remove('is-shownModal');
-}
-
-for (const img of badges) {
-    img.addEventListener('click', function setGame() {
-        let spoonCondition = document.querySelectorAll('.spoon')
-        let imagePath = img.src
-        if (imagePath.includes('greymedal.svg')) {
-            spoonCondition.length > 0 ? addPointChangeBadge(img) : alertMissingCurrency()
-            console.log(selected)
-        } else {
-            removePointChangeBadge(img)
-            addSpoon()
-            let taskValue = img.getAttribute('value')
-            if (selected.includes(taskValue)) {
-                let index = selected.indexOf(taskValue)
-                selected.splice(index, 1)
-                console.log(selected)
-            } else {
-                console.log('não tinha')
-            }
-        }
-    })
-}
-
-tryWin.addEventListener('click', function checkOptions() {
-    if (selected.length < 6) {
-        notVerified('Você ainda tem colheres que pode utilizar!')
-    } else {
-        switch (false) {
-            case verify("levantou"):
-                notVerified('Você não levantou da cama hoje. Tem dias mais difíceis que outros.');
-                break;
-            case verify("saiu"):
-                notVerified('Não deu pra sair de casa hoje, mas tudo bem! Você pode tentar novamente amanhã!');
-                break;
-            case verify("remédios"):
-                notVerified('Você não tomou seus remédios hoje. Além de ser perigoso, você perderá os próximos 2 dias por falta de energia');
-                break;
-            case verify("comeu"):
-                notVerified('Você esqueceu de comer e por isso passou mal. Tente se alimentar, você vai se sentir melhor!');
-                break;
-            case verify('produziu'):
-                notVerified('Não deu pra trabalhar direito e seu chefe te deu bronca. É bem ruim quando o mundo não entende sua doença crônica, não é?')
-                break;
-            case verify('exercícios'):
-                notVerified('Sem praticar exercícios seus níveis de serotonina ficaram muito baixos. Descanse por hoje e tente novamente amanhã. Talvez seja hora de procurar seu médico!');
-                break;
-            default:
-                window.location = 'results.html'
-        }
-    }
-})
+document.onload = app.init()
