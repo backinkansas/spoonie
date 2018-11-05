@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Jogo online para escolher colheres em troca de conquistas diárias">
-    <title>Spoonie | Você consegue chegar ao fim do dia?</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Spoonie | Você consegue chegar ao fim do dia?</title>
     <link rel='shortcut icon' type='image/x-icon' href='./favicon.ico' />
     <link rel="manifest" href="./manifest.json">
     <link href="https://fonts.googleapis.com/css?family=Abel|Shadows+Into+Light" rel="stylesheet"> 
@@ -18,98 +18,31 @@
     <main>
         <section id="game">
             <h4>Clique em cada tarefa que deseja realizar no seu dia e troque a medalha por uma colher:</h4>
-            <div id="all_badges">
-                <div class="badges_container">
-                    <img src="./assets/img/greymedal.svg" alt="Ícone de uma pequena medalha cinza. Clique para capturá-la e deixá-la colorida." class="badge" value="levantou">
-                    <p>Levantar da cama na hora certa</p>
-                </div>
-                <div class="badges_container">
-                    <img src="./assets/img/greymedal.svg" alt="Ícone de uma pequena medalha cinza. Clique para capturá-la e deixá-la colorida." class="badge" value='banho'>
-                    <p>Tomar banho</p>
-                </div>
-                <div class="badges_container">
-                    <img src="./assets/img/greymedal.svg" alt="Ícone de uma pequena medalha cinza. Clique para capturá-la e deixá-la colorida." class="badge" value='saiu'>
-                    <p>Sair de casa</p>
-                </div>
-                <div class="badges_container">
-                    <img src="./assets/img/greymedal.svg" alt="Ícone de uma pequena medalha cinza. Clique para capturá-la e deixá-la colorida." class="badge" value='comeu'>
-                    <p>Fazer as três refeições diárias</p>
-                </div>
-                <div class="badges_container">
-                    <img src="./assets/img/greymedal.svg" alt="Ícone de uma pequena medalha cinza. Clique para capturá-la e deixá-la colorida." class="badge" value='produziu'>
-                    <p>Manter a produtividade no trabalho</p>
-                </div>
-                <div class="badges_container">
-                    <img src="./assets/img/greymedal.svg" alt="Ícone de uma pequena medalha cinza. Clique para capturá-la e deixá-la colorida." class="badge" value='amigos'>
-                    <p>Falar com seus amigos</p>
-                </div>
-                <div class="badges_container">
-                    <img src="./assets/img/greymedal.svg" alt="Ícone de uma pequena medalha cinza. Clique para capturá-la e deixá-la colorida." class="badge" value='exercícios'>
-                    <p>Praticar exercícios físicos</p>
-                </div>
-                <div class="badges_container">
-                    <img src="./assets/img/greymedal.svg" alt="Ícone de uma pequena medalha cinza. Clique para capturá-la e deixá-la colorida." class="badge" value='limpou'>
-                    <p>Manter sua casa limpa</p>
-                </div>
-                <div class="badges_container">
-                    <img src="./assets/img/greymedal.svg" alt="Ícone de uma pequena medalha cinza. Clique para capturá-la e deixá-la colorida." class="badge" value='estudou'>
-                    <p>Estudar</p>
-                </div>
-                <div class="badges_container">
-                    <img src="./assets/img/greymedal.svg" alt="Ícone de uma pequena medalha cinza. Clique para capturá-la e deixá-la colorida." class="badge" value='remédios'>
-                    <p>Tomar seus remédios na hora certa</p>
-                </div>
-                <div class="badges_container">
-                    <img src="./assets/img/greymedal.svg" alt="Ícone de uma pequena medalha cinza. Clique para capturá-la e deixá-la colorida." class="badge" value='mercado'>
-                    <p>Pagar suas contas e ir ao mercado</p>
-                </div>
-                <div class="badges_container">
-                    <img src="./assets/img/greymedal.svg" alt="Ícone de uma pequena medalha cinza. Clique para capturá-la e deixá-la colorida." class="badge" value='dormiu'>
-                    <p>Dormir 8h</p>
-                </div>
-            </div>
-            <div id="all_spoons">
-                <img src="./assets/img/teaspoon.svg" alt="ícone de colher. Você só pode pegar medalhas se tiver colheres." class="spoon">
-                <img src="./assets/img/teaspoon.svg" alt="ícone de colher. Você só pode pegar medalhas se tiver colheres." class="spoon">
-                <img src="./assets/img/teaspoon.svg" alt="ícone de colher. Você só pode pegar medalhas se tiver colheres." class="spoon">
-                <img src="./assets/img/teaspoon.svg" alt="ícone de colher. Você só pode pegar medalhas se tiver colheres." class="spoon">
-                <img src="./assets/img/teaspoon.svg" alt="ícone de colher. Você só pode pegar medalhas se tiver colheres." class="spoon">
-                <img src="./assets/img/teaspoon.svg" alt="ícone de colher. Você só pode pegar medalhas se tiver colheres." class="spoon">
-            </div>
+            <ul id="all_badges" class="js-badges"></ul>
+            <div id="all_spoons"></div>
             <div id="sidebar">
                 <div id="score">
                     <p class="score_subtitle">Sua pontuação</p>
-                    <p id="score_p">0</p>
+                    <p id="score_p"></p>
                 </div>
                 <div id="div_button">
                     <button id="try_win">Finalizar o dia</button>
                 </div>
             </div>
-            <div id="my_modal" class="modal">
+            <div id="modal_reprove" class="modal is-hiddenModal">
                 <div class="modal_content">
                   <div class="modal_header">
                     <h2>Você não pode realizar tarefas sem colheres! :( </h2>
                     <div class="buttons">
-                        <button id="button_out" class="modal_button">Começar de novo</button>
+                        <button id="button_again" class="modal_button">Começar de novo</button>
                         <button id="button_end" class="modal_button">Finalizar partida</button>
                     </div>
                   </div>
                 </div>
             </div>
-            <div id="modal_alert" class="modal">
-                <div class="modal_content">
-                    <div class="modal_header">
-                        <h2 id="interactionText"></h2>
-                        <div class="buttons">
-                            <button id="button_continue" class="modal_button">Continuar jogando</button>
-                            <button id="button_giveup" class="modal_button">Finalizar partida</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </section>
     </main>
     
-    <script type="text/javascript" src="./assets/js/main.js"></script>
+    <script type="module" src="./assets/js/index.js"></script>
 </body>
 </html>
