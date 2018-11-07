@@ -1,7 +1,7 @@
 class Attempts {
     constructor() {
         this.viewContainer = document.getElementById('all_spoons')
-        this.currentAttempts = this.viewContainer.children.length
+        this.currentAttempts = this.getUpdatedAttempts()
     }
 
     handle() {
@@ -9,24 +9,29 @@ class Attempts {
     }
 
     removeAttempt() {
-        const singleAttempt = document.querySelector('.spoon')
-        singleAttempt.remove()
-    }
-
-    addAttempt() {
-        this.viewContainer.innerHTML = this.viewContainer.innerHTML + `<img src="./assets/img/teaspoon.svg" alt="Ícone de colher. Você só pode pegar medalhas se tiver colheres." class="spoon">`
-    }
-
-    getUpdatedAttempts() {
-        this.currentAttempts = this.viewContainer.children.length
+        document.querySelector('.spoon').remove()
     }
 
     buildMarkUp() {
-        this.getUpdatedAttempts()
-        while (this.currentAttempts < 6) {
+        const MAXIMUM_SPOON_NUMBER = 6
+
+        this.updateAttempts()
+        while (this.currentAttempts < MAXIMUM_SPOON_NUMBER) {
             this.addAttempt()
-            this.currentAttempts = this.viewContainer.children.length
+            this.updateAttempts()
         }
+    }
+
+    addAttempt() {
+        this.viewContainer.innerHTML += `<img src="./assets/img/teaspoon.svg" alt="Ícone de colher. Você só pode pegar medalhas se tiver colheres." class="spoon">`
+    }
+
+    updateAttempts() {
+        this.currentAttempts = this.getUpdatedAttempts()
+    }
+
+    getUpdatedAttempts() {
+        return this.viewContainer.children.length
     }
 }
 

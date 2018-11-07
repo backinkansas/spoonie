@@ -70,7 +70,7 @@ main {
     margin: 0 auto;
 }
 
-.intro_p {
+.intro_text {
     width: 73%;
 }
 
@@ -179,7 +179,7 @@ h4 {
     border-bottom: #2E9FB1 2px solid;
 }
 
-#score_p {
+#score_text {
     margin: 0;
     font-size: 50px;
     color: #cf4123;

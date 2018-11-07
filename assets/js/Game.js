@@ -4,6 +4,7 @@ import Tasks from './Tasks.js'
 import Score from './Score.js'
 import Validator from './Validator.js'
 import Modal from './Modal.js'
+import Result from './Result.js'
 
 class Game {
     constructor() {
@@ -11,9 +12,9 @@ class Game {
         this.score = new Score()
         this.validator = new Validator()
         this.attempts = new Attempts()
-
-        // this.result = new Result()
-        // this.modalWithResultView = new Modal()
+        this.modal = new Modal({ restart: this.restart.bind(this) })
+        this.buttonRequestResult = document.getElementById('try_win')
+        this.result = new Result()
     }
 
     init() {
@@ -22,13 +23,15 @@ class Game {
         this.play()
     }
 
-    // _calculateFinalResult() {
-    //     return this.result.calculate(this.tasks.areActive(), this.attempts)
-    // }
-
-    // displayFinalResult() {
-    //     this.modalWithResultView.update(this._calculateFinalResult())
-    // }
+    play() {
+        this.tasks.viewContainer.addEventListener('click', (event) => {
+            if (this.validator.isValidAction(event.target)) {
+                return this.handleTask(event.target)
+            }
+            this.modal.shouldShow()
+        })
+        this.prepareButtonRequestResult()
+    }
 
     handleTask(target) {
         this.tasks.changeActivity(target)
@@ -36,18 +39,22 @@ class Game {
         this.score.changeScore(target)
     }
 
-    play() {
-        this.tasks.viewContainer.addEventListener('click', (event) => {
-
-            if (this.validator.isValidAction(event.target)) {
-                return this.handleTask(event.target)
-            }
-
-            this.modal = new Modal(this.attempts, this.tasks, this.score)
+    prepareButtonRequestResult() {
+        this.buttonRequestResult.addEventListener('click', () => {
+            this.modal.updateTextResponse(this.calculateFinalResult())
             this.modal.shouldShow()
         })
     }
 
+    calculateFinalResult() {
+        return this.result.calculate(this.tasks.areMissing())
+    }
+
+    restart() {
+        this.attempts.buildMarkUp()
+        this.tasks.buildMarkUp()
+        this.score.restartScore()
+    }
 }
 
 export default Game

@@ -10,9 +10,7 @@ class Validator {
     }
 
     isValidAction(target) {
-        if (this.isValidTask(target) && this.hasAttemptsCurrency()) return true
-
-        return false
+        return this.isValidTask(target) && this.hasAttemptsCurrency() === true
     }
 }
 

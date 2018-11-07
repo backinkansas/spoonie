@@ -1,11 +1,10 @@
 class Modal {
-    constructor(attempts, tasks, score) {
+    constructor({ restart }) {
         this.view = document.getElementById('modal_reprove')
         this.buttonPlayAgain = document.getElementById('button_again')
         this.buttonGiveUp = document.getElementById('button_end')
-        this.attempts = attempts
-        this.tasks = tasks
-        this.score = score
+        this.textResponse = document.querySelector('.modal_text-content')
+        this.restart = restart
     }
 
     shouldShow() {
@@ -20,16 +19,18 @@ class Modal {
         this.view.classList.add('is-hiddenModal')
     }
 
+    updateTextResponse(result) {
+        this.textResponse.textContent = result
+    }
+
     prepareButtonGiveUp() {
         this.buttonGiveUp.addEventListener('click', () => window.location = 'results.html')
     }
 
     prepareButtonPlayAgain() {
         this.buttonPlayAgain.addEventListener('click', () => {
-            this.attempts.buildMarkUp()
-            this.tasks.buildMarkUp()
+            this.restart()
             this.shouldHide()
-            this.score.restartScore()
         })
     }
 }
