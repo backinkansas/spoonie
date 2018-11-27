@@ -9,8 +9,13 @@ class Validator {
         return currentAttemptsNumber > 0
     }
 
-    isValidAction(target) {
-        return this.isValidTask(target) && this.hasAttemptsCurrency() === true
+    validate(target){
+        const validTarget = this.isValidTask(target) && this.hasAttemptsCurrency()
+
+        if (!validTarget) {
+            throw "Não pode realizar ação"
+        }
+
     }
 }
 

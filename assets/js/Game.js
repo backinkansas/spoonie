@@ -25,10 +25,12 @@ class Game {
 
     play() {
         this.tasks.viewContainer.addEventListener('click', (event) => {
-            if (this.validator.isValidAction(event.target)) {
-                return this.handleTask(event.target)
+            try{
+                this.validator.validate(event.target)
+                this.handleTask(event.target)
+            } catch{
+                this.modal.shouldShow()
             }
-            this.modal.shouldShow()
         })
         this.prepareButtonRequestResult()
     }
